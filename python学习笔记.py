@@ -70,3 +70,20 @@ def product(*nums):
 	for n in nums:
 		prod*=n
 	return prod
+	
+
+#递归函数
+#计算阶乘n!=1*2*3*...*n
+def fact(n):
+	if n==1:
+		return 1
+	return n*fact(n-1)
+#汉诺塔问题
+
+def move(n,a,b,c):
+	if n==1:
+		print(a,'-->',c)
+	else:
+		move(n-1,a,c,b)
+		print(a,'-->',c)
+		move(n-1,b,a,c)
