@@ -126,3 +126,10 @@ def fib(max):
 而变成generator的函数，在每次调用next()的时候执行，遇到yield语句返回，
 再次执行时从上次返回的yield语句处继续执行
 '''
+#练习：杨辉三角
+def triangles():
+	L = [1]
+	while True:
+		yield L
+		L = [sum(i) for i in zip([0]+L,L+[0])]
+	
