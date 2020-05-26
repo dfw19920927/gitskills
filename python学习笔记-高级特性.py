@@ -132,4 +132,8 @@ def triangles():
 	while True:
 		yield L
 		L = [sum(i) for i in zip([0]+L,L+[0])]
-	
+
+#迭代器：可以被next()函数调用并不断返回下一个值的对象称为迭代器：Iterator
+#迭代对象：可以直接作用于for循环的对象统称为可迭代对象：Iterable
+#集合数据类型如list、dict、str等是Iterable但不是Iterator
+#把list、dict、str等Iterable变成Iterator可以使用iter()函数	
