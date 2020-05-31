@@ -50,4 +50,54 @@ def str2float(s):
     s2 = reduce(fn2, map(char2num, s_split[1]))[::-1]/10
     return s1+s2
 
+#返回函数:将函数作为结果值返回
+def lazy_sum(*args):
+    def sum():
+        ax=0
+        for n in args:
+            ax+=n
+        return ax
+    return sum
+'''
+>>> f = lazy_sum(1, 3, 5, 7, 9)
+>>> f
+<function lazy_sum.<locals>.sum at 0x101c6ed90>
+>>> f()
+25
+'''
+#闭包:们在函数lazy_sum中又定义了函数sum，并且，
+# 内部函数sum可以引用外部函数lazy_sum的参数和局部变量，当lazy_sum返回函数sum时，
+# 相关参数和变量都保存在返回的函数中
+def count():
+    fs = []
+    for i in range(1, 4):
+        def f():
+             return i*i
+        fs.append(f)
+    return fs
+
+f1, f2, f3 = count()
+'''
+>>> f1()
+9
+>>> f2()
+9
+>>> f3()
+9
+全部都是9！原因就在于返回的函数引用了变量i，但它并非立刻执行。
+等到3个函数都返回时，它们所引用的变量i已经变成了3，因此最终结果为9
+
+返回闭包时牢记一点：返回函数不要引用任何循环变量，或者后续会发生变化的变量
+'''
+#练习
+def createCounter():
+    ax = []
+    def count():
+        ax[0] = ax[0] + 1
+        return ax[0]
+    return count()
+
+#匿名函数 lambda 关键字lambda表示匿名函数，冒号前面的x表示函数参数。
+f = lambda x:x*x
+
 
