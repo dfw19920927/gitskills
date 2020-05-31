@@ -32,3 +32,22 @@ def str2int(s):
     def char2num(s):
         return DIGITS[s]
     return reduce(fn, map(char2num, s))
+
+#练习2：将字符数据转换为float值
+def str2float(s):
+    s_split = s.split('.')
+
+    def fn1(x,y):
+        return x*10+y
+
+    def fn2(x, y):
+        return x/10+y
+
+    def char2num(str):
+        return DIGITS[str]
+
+    s1 = reduce(fn1, map(char2num, s_split[0]))
+    s2 = reduce(fn2, map(char2num, s_split[1]))[::-1]/10
+    return s1+s2
+
+
