@@ -1,4 +1,7 @@
 from functools import reduce
+import time
+
+
 '''
 map()函数，接收两个参数，一个是函数，一个是Iterable（可迭代对象），
 map将传入的函数依次作用到序列的每个元素，并把结果作为一个行的Iterable返回
@@ -149,4 +152,25 @@ f = now_new
 f()
 #和两层嵌套的decorator相比，3层嵌套的效果是这样的：>>> now = log('execute')(now)
 
+#练习，写一个装饰器，计算函数执行的时间
+def metric(fn):
+    def wrapper(*args, **kw):
+        StartTime = time.time()
+        r = fn(*args, **kw)
+        EndTime = time.time()
+        print('%s excuted in %s ms' %(fn.__name__, EndTime-StartTime))
+        return r
+    return wrapper
 
+class Student(object):
+    def __init__(self, name, gender):
+        self.name = name
+        self.__gender = gender
+
+    def get_gender(self):
+        return self.__gender
+
+    def set_gender(self,gender):
+        if gender not in ['male','female']:
+            raise('TypeError', e)
+        self.__gender = gender
