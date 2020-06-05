@@ -57,7 +57,17 @@ class Timer(object):
 
 run_twice(Animal) 对传入的对象不做强制要求是继承自Animal，只要传入的对象有run方法就行
 '''
+
+
 #配合getattr()、setattr()以及hasattr()，我们可以直接操作一个对象的状态：
+
+
+'''
+getattr():获取对象属性
+setattr():设置对象属性
+hasattr():判断是否有该属性
+'''
+
 
 def run_twice(Animal):
     Animal.run()
@@ -67,3 +77,5 @@ def run_twice(Animal):
 run_twice(Timer())
 print(type(run_twice) == types.FunctionType)
 print(dir(Animal))
+
+# getattr（obj,'z',404） 如果属性‘Z’不存在则返回默认值404。
